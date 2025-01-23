@@ -1,8 +1,12 @@
+/**
+ * @jest-environment jsdom
+ */
 import { render, within } from "@testing-library/react";
 import React from "react";
 import App from "../App";
 import userEvent from "@testing-library/user-event";
 import { getEvents } from "../api";
+import "jest-environment-jsdom";
 
 describe("<App /> component", () => {
   let AppDOM;
@@ -48,9 +52,9 @@ describe("<App /> integration", () => {
 
     expect(allRenderedEventItems.length).toBe(berlinEvents.length);
 
-    allRenderedEventItems.forEach(event => {
+    allRenderedEventItems.forEach((event) => {
       expect(event.textContent).toContain("Berlin, Germany");
-    })
+    });
   });
 
   test("renders a specific number of events according to the value of the 'number of events' input field", async () => {
@@ -59,14 +63,15 @@ describe("<App /> integration", () => {
     const AppDOM = AppComponent.container.firstChild;
 
     const NumberOfEventsDOM = AppDOM.querySelector("#events-number");
-    const NumberOfEventsInput = within(NumberOfEventsDOM).queryByRole("textbox");
+    const NumberOfEventsInput =
+      within(NumberOfEventsDOM).queryByRole("textbox");
 
     await user.type(NumberOfEventsInput, "{backspace}{backspace}10");
 
     const EventListDOM = AppDOM.querySelector("#event-list");
     const allRenderedEventItems =
       within(EventListDOM).queryAllByRole("listitem");
-    
+
     expect(allRenderedEventItems.length).toBe(10);
-  })
+  });
 });

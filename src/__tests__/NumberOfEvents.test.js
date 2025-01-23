@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import React from "react";
 import { render } from "@testing-library/react";
 import NumberOfEvents from "../components/NumberOfEvents";
@@ -7,7 +10,9 @@ describe("<NumberOfEvents /> component", () => {
   let NumberOfEventsComponent;
 
   beforeEach(() => {
-    NumberOfEventsComponent = render(<NumberOfEvents setCurrentNOE={()=> {}} />);
+    NumberOfEventsComponent = render(
+      <NumberOfEvents setCurrentNOE={() => {}} />
+    );
   });
 
   test("renders input field", () => {
@@ -24,6 +29,6 @@ describe("<NumberOfEvents /> component", () => {
     const inputNumber = NumberOfEventsComponent.queryByRole("textbox");
     const user = userEvent.setup();
     await user.type(inputNumber, "{backspace}{backspace}10");
-    expect(inputNumber).toHaveValue('10');
+    expect(inputNumber).toHaveValue("10");
   });
 });

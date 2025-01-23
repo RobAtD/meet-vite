@@ -1,3 +1,6 @@
+/**
+ * @jest-environment jsdom
+ */
 import React from "react";
 import Event from "../components/Event";
 import { render } from "@testing-library/react";
@@ -37,23 +40,23 @@ describe("<Event /> component", () => {
   });
 
   test("by default, event's details section should be hidden", () => {
-    const eventDetails = EventComponent.container.querySelector('.details');
+    const eventDetails = EventComponent.container.querySelector(".details");
     expect(eventDetails).not.toBeInTheDocument();
   });
 
-  test('shows the details section when the user clicks on the "show details" button', async ()=> {
+  test('shows the details section when the user clicks on the "show details" button', async () => {
     const user = userEvent.setup();
-    const eventDetailsButton = EventComponent.queryByText('show details');
+    const eventDetailsButton = EventComponent.queryByText("show details");
     await user.click(eventDetailsButton);
     const eventDetails = EventComponent.container.querySelector(".details");
     expect(eventDetails).toBeInTheDocument();
   });
 
-  test('hide the details section when the user clicks on the "hide details" button', async ()=> {
+  test('hide the details section when the user clicks on the "hide details" button', async () => {
     const user = userEvent.setup();
     const eventHideDetailsButton = EventComponent.queryByText("hide details");
     await user.click(eventHideDetailsButton);
     const eventDetails = EventComponent.container.querySelector(".details");
     expect(eventDetails).not.toBeInTheDocument();
-  })
+  });
 });
