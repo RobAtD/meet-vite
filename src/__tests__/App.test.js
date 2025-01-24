@@ -2,11 +2,10 @@
  * @jest-environment jsdom
  */
 import { render, within } from "@testing-library/react";
-import React from "react";
-import App from "../App";
 import userEvent from "@testing-library/user-event";
+import React from "react";
 import { getEvents } from "../api";
-import "jest-environment-jsdom";
+import App from "../App";
 
 describe("<App /> component", () => {
   let AppDOM;

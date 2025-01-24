@@ -93,3 +93,11 @@ input[type="number"] {
 .details {
   margin-top: 20px;
 }
+
+.alerts-container {
+  position: fixed;
+  top: 0px;
+  left: 2px;
+  width: 250px;
+  z-index: 1000;
+}
