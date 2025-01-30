@@ -32,11 +32,11 @@ export const getEvents = async () => {
   }
 
   // Access the local storage when offline
-  if (!navigator.onLine) {
-    const events = localStorage.getItem("lastEvents");
-    NProgress.done();
-    return events ? JSON.parse(events) : [];
-  }
+  // if (!navigator.onLine) {
+  //   const events = localStorage.getItem("lastEvents");
+  //   NProgress.done();
+  //   return events ? JSON.parse(events) : [];
+  // }
 
   const token = await getAccessToken();
 
