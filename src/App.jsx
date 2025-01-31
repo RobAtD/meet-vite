@@ -16,10 +16,12 @@ const App = () => {
   const [warningAlert, setWarningAlert] = useState("");
 
   useEffect(() => {
-    if(navigator.onLine){
+    if (navigator.onLine) {
       setWarningAlert("");
     } else {
-      setWarningAlert("You are offline. The displayed event list has been loaded from the cache.");
+      setWarningAlert(
+        "You are offline. The displayed event list has been loaded from the cache."
+      );
     }
     fetchData();
   }, [currentCity, currentNOE]);
@@ -41,6 +43,8 @@ const App = () => {
         {errorAlert.length ? <ErrorAlert text={errorAlert} /> : null}
         {warningAlert.length ? <WarningAlert text={warningAlert} /> : null}
       </div>
+      <h1>Meet App</h1>
+      <p>Choose your nearest city</p>
       <CitySearch
         allLocations={allLocations}
         setCurrentCity={setCurrentCity}
@@ -50,7 +54,11 @@ const App = () => {
         setCurrentNOE={setCurrentNOE}
         setErrorAlert={setErrorAlert}
       />
-      <EventList events={events} />
+      {events.length > 1 ? (
+        <EventList events={events} />
+      ) : (
+        <div className="loader"></div>
+      )}
     </div>
   );
 };
