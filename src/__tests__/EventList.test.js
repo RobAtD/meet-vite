@@ -32,6 +32,7 @@ describe("<EventList /> integration", () => {
     const AppDOM = AppComponent.container.firstChild;
     const EventListDOM = AppDOM.querySelector("#event-list");
     await waitFor(() => {
+      const EventListDOM = AppDOM.querySelector("#event-list");
       const EventListItems = within(EventListDOM).queryAllByRole("listitem");
       expect(EventListItems.length).toBe(32);
     });

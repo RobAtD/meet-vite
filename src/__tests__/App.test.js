@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-import { render, within } from "@testing-library/react";
+import { render, waitFor, within } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import React from "react";
 import { getEvents } from "../api";
@@ -13,8 +13,11 @@ describe("<App /> component", () => {
     AppDOM = render(<App />).container.firstChild;
   });
 
-  test("renders list of events", () => {
-    expect(AppDOM.querySelector("#event-list")).toBeInTheDocument();
+  test("renders list of events", async () => {
+    await waitFor(() => {
+      const eventList = AppDOM.querySelector("#event-list");
+      expect(eventList).toBeInTheDocument();
+    });
   });
 
   test("render CitySearch", () => {

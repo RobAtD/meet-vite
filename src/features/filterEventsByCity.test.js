@@ -25,9 +25,9 @@ defineFeature(feature, (test) => {
 
     then("the user should see the list of all upcoming events.", async () => {
       const AppDOM = AppComponent.container.firstChild;
-      const EventListDOM = AppDOM.querySelector("#event-list");
 
       await waitFor(() => {
+        const EventListDOM = AppDOM.querySelector("#event-list");
         const EventListItems = within(EventListDOM).queryAllByRole("listitem");
         expect(EventListItems.length).toBe(32);
       });

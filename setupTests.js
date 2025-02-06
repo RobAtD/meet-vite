@@ -1,4 +1,6 @@
 import "@testing-library/jest-dom";
+import ResizeObserver from "resize-observer-polyfill";
+global.ResizeObserver = ResizeObserver;
 
 // Here, add portions of the warning messages you want to intentionally prevent from appearing
 const MESSAGES_TO_IGNORE = [

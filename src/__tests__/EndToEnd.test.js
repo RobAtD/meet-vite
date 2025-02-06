@@ -47,21 +47,24 @@ describe("Filter events by city", () => {
   });
 
   test("When user hasn’t searched for a city, show upcoming events from all cities.", async () => {
-    const citySearch = await page.$eval(".city", el => el.value);
+    const citySearch = await page.$eval(".city", (el) => el.value);
     expect(citySearch).toBe("");
-    const eventList = await page.$eval("#event-list", (el) => el.children.length);
+    const eventList = await page.$eval(
+      "#event-list",
+      (el) => el.children.length
+    );
     expect(eventList).toBe(32);
   });
 
-  test("User should see a list of suggestions when they search for a city.", async ()=> {
+  test("User should see a list of suggestions when they search for a city.", async () => {
     await page.type(".city", "Berlin");
     const suggestionList = await page.$(".suggestions");
     expect(suggestionList).toBeDefined();
   });
 
-  test("User can select a city from the suggested list.", async ()=> {
+  test("User can select a city from the suggested list.", async () => {
     await page.click(".suggestions li");
-    const citySearch = await page.$eval(".city", el => el.value);
+    const citySearch = await page.$eval(".city", (el) => el.value);
     expect(citySearch).toBe("Berlin, Germany");
   });
 });

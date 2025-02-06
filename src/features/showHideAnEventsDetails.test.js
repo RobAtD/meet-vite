@@ -16,7 +16,10 @@ defineFeature(feature, (test) => {
     given("the user is on the event list screen", async () => {
       AppComponent = render(<App />);
       const AppDOM = AppComponent.container.firstChild;
-      EventListDOM = AppDOM.querySelector("#event-list");
+      await waitFor(() => {
+        EventListDOM = AppDOM.querySelector("#event-list");
+        expect(EventListDOM).toBeInTheDocument();
+      });
     });
 
     when("the user views the event", async () => {
@@ -41,8 +44,8 @@ defineFeature(feature, (test) => {
     given("the user is on the event list screen", async () => {
       AppComponent = render(<App />);
       const AppDOM = AppComponent.container.firstChild;
-      EventListDOM = AppDOM.querySelector("#event-list");
       await waitFor(() => {
+        EventListDOM = AppDOM.querySelector("#event-list");
         eventListItem = EventListDOM.querySelectorAll(".event");
         detailsButton = eventListItem[0].querySelector(".details-btn");
       });
@@ -72,29 +75,29 @@ defineFeature(feature, (test) => {
     given("the user has expanded an event to view details", async () => {
       AppComponent = render(<App />);
       const AppDOM = AppComponent.container.firstChild;
-      EventListDOM = AppDOM.querySelector("#event-list");
       const user = userEvent.setup();
 
       await waitFor(() => {
+        EventListDOM = AppDOM.querySelector("#event-list");
         eventListItem = EventListDOM.querySelectorAll(".event");
         detailsButton = eventListItem[0].querySelector(".details-btn");
       });
 
       await user.click(detailsButton);
-      
-      await waitFor(()=> {
-       eventDetails = eventListItem[0].querySelector(".details");
-       expect(eventDetails).toBeInTheDocument();
-      });  
+
+      await waitFor(() => {
+        eventDetails = eventListItem[0].querySelector(".details");
+        expect(eventDetails).toBeInTheDocument();
+      });
     });
 
     when("the user clicks on the details button", async () => {
-        const user = userEvent.setup();
-        await user.click(detailsButton);
+      const user = userEvent.setup();
+      await user.click(detailsButton);
     });
 
     then("the event details should collapse and be hidden", () => {
-        expect(eventDetails).not.toBeInTheDocument();
+      expect(eventDetails).not.toBeInTheDocument();
     });
   });
 });
