@@ -1,10 +1,12 @@
 import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import useScreenSize from "../hooks/useScreenSize";
 
 const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
   const genres = ["React", "JavaScript", "Node", "jQuery", "Angular"];
   const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8"];
+  const screenSize = useScreenSize();
 
   useEffect(() => {
     setData(getData());
@@ -47,18 +49,19 @@ const EventGenresChart = ({ events }) => {
 
   return (
     <ResponsiveContainer width="99%" height={400}>
+      <p>Topic Distribution</p>
       <PieChart>
         <Pie
           data={data}
           dataKey="value"
           label={renderCustomizedLabel}
-          outerRadius={130}
+          outerRadius={screenSize.width > 850 ? 130 : 100}
         >
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={colors[index]} />
           ))}
         </Pie>
-        <Legend verticalAlign="bottom" height={0} margin={{top: 20, right: 0, bottom: 0, left: 0}}></Legend>
+        <Legend verticalAlign="bottom" height={0}></Legend>
       </PieChart>
     </ResponsiveContainer>
   );

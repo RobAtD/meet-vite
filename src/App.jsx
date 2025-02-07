@@ -52,11 +52,12 @@ const App = () => {
         setCurrentCity={setCurrentCity}
         setInfoAlert={setInfoAlert}
       />
+      <p>Set number of Events to show</p>
       <NumberOfEvents
         setCurrentNOE={setCurrentNOE}
         setErrorAlert={setErrorAlert}
       />
-      {events.length > 1 ? (
+      {events.length > 0 ? (
         <Fragment>
           <div className="charts-container">
             <EventGenresChart events={events} />
