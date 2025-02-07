@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend, Tooltip } from "recharts";
 import React, { useEffect, useMemo, useState } from "react";
 import useScreenSize from "../hooks/useScreenSize";
 
@@ -61,6 +61,7 @@ const EventGenresChart = ({ events }) => {
             <Cell key={`cell-${index}`} fill={colors[index]} />
           ))}
         </Pie>
+        <Tooltip cursor={{ strokeDasharray: "3 3" }} />
         <Legend verticalAlign="bottom" height={0}></Legend>
       </PieChart>
     </ResponsiveContainer>

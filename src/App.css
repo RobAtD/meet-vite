@@ -15,10 +15,6 @@ ul {
   padding: 0;
 }
 
-p {
-  margin: 5px 0;
-}
-
 input[type="text"],
 input[type="number"] {
   padding: 8px 6px 8px 10px;
@@ -80,6 +76,10 @@ input[type="number"] {
   border-radius: 4px;
   position: relative;
   max-width: 800px;
+}
+
+.event > p {
+  margin: 20px 0;
 }
 
 #event-list {

@@ -32,10 +32,10 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
 
   const handleItemClicked = (event) => {
     const value = event.target.textContent;
-    setQuery(value);
-    setShowSuggestions(false); // to hide the list
-    setCurrentCity(value);
-    setInfoAlert("");
+      setQuery(value);
+      setShowSuggestions(false); // to hide the list
+      setCurrentCity(value);
+      setInfoAlert("");
   };
 
   return (
@@ -46,7 +46,6 @@ const CitySearch = ({ allLocations, setCurrentCity, setInfoAlert }) => {
         placeholder="Search for a City"
         value={query}
         onFocus={setShowSuggestions}
-        onBlur={()=>setShowSuggestions(false)}
         onChange={handleInputChanged}
       />
       {showSuggestions ? (
