@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import EventList from "./components/EventList";
 import CitySearch from "./components/CitySearch";
 import NumberOfEvents from "./components/NumberOfEvents";
@@ -56,12 +56,14 @@ const App = () => {
         setCurrentNOE={setCurrentNOE}
         setErrorAlert={setErrorAlert}
       />
-      <div className="charts-container">
-        <EventGenresChart events={events}/>
-        <CityEventsChart allLocations={allLocations} events={events} />
-      </div>
       {events.length > 1 ? (
-        <EventList events={events} />
+        <Fragment>
+          <div className="charts-container">
+            <EventGenresChart events={events} />
+            <CityEventsChart allLocations={allLocations} events={events} />
+          </div>
+          <EventList events={events} />
+        </Fragment>
       ) : (
         <div className="loader"></div>
       )}
