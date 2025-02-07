@@ -1,13 +1,14 @@
-import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from "recharts";
 import React, { useEffect, useState } from "react";
 
 const EventGenresChart = ({ events }) => {
   const [data, setData] = useState([]);
   const genres = ["React", "JavaScript", "Node", "jQuery", "Angular"];
+  const colors = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#8884d8"];
 
-  useEffect(()=> {
+  useEffect(() => {
     setData(getData());
-  },[`${events}`])
+  }, [`${events}`]);
 
   const getData = () => {
     const data = genres.map((genre) => {
@@ -19,32 +20,46 @@ const EventGenresChart = ({ events }) => {
     return data;
   };
 
-  const renderCustomizedLabel = ({cx, cy, midAngle, outerRadius, percent, index}) => {
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    outerRadius,
+    percent,
+    index,
+  }) => {
     const RADIAN = Math.PI / 180;
     const radius = outerRadius;
     const x = cx + radius * Math.cos(-midAngle * RADIAN) * 1.07;
     const y = cy + radius * Math.sin(-midAngle * RADIAN) * 1.07;
     return percent ? (
-      <text x={x}
-      y={y}
-      fill="#8884d8"
-      textAnchor={x > cx ? "start" : "end"}
-      dominantBaseline="central" >
+      <text
+        x={x}
+        y={y}
+        fill={colors[index]}
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
         {`${genres[index]} ${(percent * 100).toFixed(0)}%`}
       </text>
-    ): null;
-  }
+    ) : null;
+  };
 
   return (
     <ResponsiveContainer width="99%" height={400}>
       <PieChart>
         <Pie
-        data={data}
-        dataKey="value"
-        fill="#8884d8"
-        labelLine={false}
-        label={renderCustomizedLabel}
-        outerRadius={150} />
+          data={data}
+          dataKey="value"
+          labelLine={false}
+          label={renderCustomizedLabel}
+          outerRadius={150}
+        >
+          {data.map((entry, index) => (
+            <Cell key={`cell-${index}`} fill={colors[index]} />
+          ))}
+        </Pie>
+        <Legend verticalAlign="bottom" height={36}></Legend>
       </PieChart>
     </ResponsiveContainer>
   );
