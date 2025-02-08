@@ -1,8 +1,35 @@
-# Meet app
+# Meet app - A Progressive Web App (PWA)
 
 The **Meet App** is a modern web application designed to help users discover and explore events in different cities. By leveraging the power of serverless architecture and Progressive Web Apps (PWAs), the Meet App delivers a seamless, fast, and cross-platform experience.
 
-## Key Features
+## Table of Contents
+1. [Features](#features)
+2. [Technologies](#technologies-used)
+3. [User stories: Features and Scenarios](#user-stories-features-and-scenarios)
+4. [Setup and Installation](#setup-and-installation)
+5. [License](#license)
+
+## Features
+- Google Calendar Integration: Fetches real-time event data from the Google Calendar API.
+- Event Filtering: Filter events based on location.
+- Event Details: View details like date, time, and description of events.
+- Progressive Web App (PWA): Installable on mobile and desktop devices.
+- Offline Capability: Works offline using service workers.
+- Responsive Design: Optimized for all devices (mobile, tablet, and desktop).
+
+## Technologies used
+- React (front-end framework)
+- Node.js & npm (runtime and package manager)
+- AWS Lambda (serverless functions for backend)
+- Google Calendar API (event data retrieval)
+- OAuth2 (authentication flow)
+- Jest/Cucumber (testing frameworks for TDD)
+- Git & GitHub (version control and hosting)
+- Vercel (deployment)
+- Service Workers (offline capabilities)
+- Recharts (data visualization library)
+
+## User stories: Features And Scenarios
 
 ### Filter Events By City
 
@@ -105,3 +132,34 @@ Given the user is on the event list screen</br>
 And there are upcoming events available in multiple cities</br>
 When the user views the event details visualization</br>
 Then the app should display a chart showing the number of upcoming events in each city
+
+## Setup and Installation
+### Prerequisites
+Before you begin, make sure you have the following installed on your machine:
+
+- Node.js (v16 or higher)
+- npm (Node package manager)
+
+### Installation
+1. Clone the repository:
+   ```
+   git clone https://github.com/RobAtD/meet-vite.git
+   ```
+2. Navigate into the project directory:
+   ```
+   cd meet-vite
+   ```
+3. Install the dependencies:
+   ```
+   npm install
+   ```
+
+### Running the App
+To start the app locally, run the following command: 
+```
+npm start
+```
+This will open the app in your browser at http://localhost:5173
+
+## License
+This project is licensed under the MIT License.
